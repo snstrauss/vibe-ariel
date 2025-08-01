@@ -1,0 +1,9 @@
+flowchart TB
+title Login Flow
+welcome{{"welcome screen"}}
+login-process{"login process"}
+error{{"login error"}}
+success{{"login success"}}
+welcome --> login-process
+login-process ==> success|success|
+login-process -.-> error|fail|

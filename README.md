@@ -1,6 +1,6 @@
-# JSX to Mermaid
+# Ariel
 
-A powerful tool that allows you to define Mermaid graphs using JSX syntax and compose them like React components. Built with render-jsx for maximum flexibility and component reusability.
+A powerful tool that allows you to define Mermaid graphs using JSX syntax and compose them like React components. Built with TypeScript and Preact for maximum flexibility and component reusability.
 
 ## Features
 
@@ -14,14 +14,13 @@ A powerful tool that allows you to define Mermaid graphs using JSX syntax and co
 ## Installation
 
 ```bash
-npm install jsx-to-mermaid
+npm install ariel
 ```
 
 ## Quick Start
 
 ```tsx
-import { Graph, Rectangle, Diamond, Circle, Arrow } from 'jsx-to-mermaid';
-import { jsxToMermaid } from 'jsx-to-mermaid';
+import Ariel, { Graph, Rectangle, Diamond, Circle, Arrow } from 'ariel';
 
 // Create a simple flowchart
 const flowchart = (
@@ -39,7 +38,8 @@ const flowchart = (
 );
 
 // Convert to Mermaid syntax
-const mermaidCode = jsxToMermaid(flowchart);
+const ariel = new Ariel();
+const mermaidCode = ariel.render(flowchart);
 console.log(mermaidCode);
 ```
 
@@ -132,7 +132,7 @@ const systemGraph = (
 
 ## API Reference
 
-### jsxToMermaid(jsxElement: any): string
+### Ariel.render(jsxElement: any): string
 
 Converts a JSX element to Mermaid syntax.
 

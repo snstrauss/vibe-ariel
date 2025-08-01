@@ -1,17 +1,16 @@
-# JSX to Mermaid - Usage Guide
+# Ariel - Usage Guide
 
 ## Quick Start
 
 ### Installation
 ```bash
-npm install jsx-to-mermaid
+npm install ariel
 ```
 
 ### Basic Usage
 
 ```tsx
-import { Graph, Rectangle, Diamond, Circle, Arrow } from 'jsx-to-mermaid';
-import { jsxToMermaid } from 'jsx-to-mermaid';
+import Ariel, { Graph, Rectangle, Diamond, Circle, Arrow } from 'ariel';
 
 // Create a simple flowchart
 const flowchart = (
@@ -29,14 +28,15 @@ const flowchart = (
 );
 
 // Convert to Mermaid syntax
-const mermaidCode = jsxToMermaid(flowchart);
+const ariel = new Ariel();
+const mermaidCode = ariel.render(flowchart);
 console.log(mermaidCode);
 ```
 
 ### Simple API (No JSX Required)
 
 ```tsx
-import { createSimpleGraph } from 'jsx-to-mermaid';
+import { createSimpleGraph } from 'ariel';
 
 const mermaidCode = createSimpleGraph(
   [
@@ -248,7 +248,7 @@ decision --> error|No|
 ### With React
 ```tsx
 import React from 'react';
-import { jsxToMermaid } from 'jsx-to-mermaid';
+import Ariel, { Graph, Rectangle, Arrow } from 'ariel';
 
 const MermaidComponent = () => {
   const graph = (
@@ -259,7 +259,8 @@ const MermaidComponent = () => {
     </Graph>
   );
   
-  const mermaidCode = jsxToMermaid(graph);
+  const ariel = new Ariel();
+  const mermaidCode = ariel.render(graph);
   
   return (
     <div>
@@ -273,7 +274,7 @@ const MermaidComponent = () => {
 ### With Next.js
 ```tsx
 // pages/graphs.js
-import { jsxToMermaid } from 'jsx-to-mermaid';
+import Ariel, { Graph, Rectangle, Arrow } from 'ariel';
 
 export default function GraphsPage() {
   const graph = (
@@ -286,7 +287,8 @@ export default function GraphsPage() {
     </Graph>
   );
   
-  const mermaidCode = jsxToMermaid(graph);
+  const ariel = new Ariel();
+  const mermaidCode = ariel.render(graph);
   
   return (
     <div>

@@ -1,11 +1,11 @@
 {
   "name": "ariel",
   "version": "1.0.0",
-  "description": "A tool to define Mermaid graphs using JSX syntax with component composition",
+  "description": "Ariel - A tool to define Mermaid graphs using JSX syntax with component composition",
   "main": "dist/index.js",
   "type": "module",
   "bin": {
-    "jsx-to-mermaid": "dist/cli.js"
+    "ariel": "dist/cli.js"
   },
   "scripts": {
     "build": "tsc",

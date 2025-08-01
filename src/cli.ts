@@ -11,10 +11,10 @@ function main() {
     runDemo();
     console.log('✅ Demo completed successfully!');
     console.log('\nTo use this tool in your project:');
-    console.log('1. Install: npm install jsx-to-mermaid');
-    console.log('2. Import: import { jsxToMermaid, Graph, Node, Edge } from "jsx-to-mermaid"');
+    console.log('1. Install: npm install ariel');
+console.log('2. Import: import Ariel, { Graph, Node, Edge } from "ariel"');
     console.log('3. Create graphs using JSX syntax');
-    console.log('4. Convert to Mermaid: const mermaid = jsxToMermaid(yourJSX)');
+    console.log('4. Convert to Mermaid: const ariel = new Ariel(); const mermaid = ariel.render(yourJSX)');
   } catch (error) {
     console.error('❌ Error running demo:', error);
     process.exit(1);

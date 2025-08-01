@@ -2,6 +2,8 @@
 
 A powerful tool that allows you to define Mermaid graphs using JSX syntax and compose them like React components. Built with TypeScript and Preact for maximum flexibility and component reusability.
 
+![Ariel - Mermaid Tech Adventure](mermaid_tech_adventure.png)
+
 ## Features
 
 - 🎨 **JSX Syntax**: Define graphs using familiar JSX syntax

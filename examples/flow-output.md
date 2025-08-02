@@ -1,7 +1,7 @@
-# full flow example:
+# full flow
 ```mermaid
 flowchart TB
-%% title full flow example
+%% title full flow
 login -.-> cart
 subgraph login
   welcome["welcome screen"]

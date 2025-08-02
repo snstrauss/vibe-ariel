@@ -5,15 +5,17 @@ import MainCartGraph from "./main-cart.js";
 const loginId = "login";
 const cartId = "cart";
 
-const FullGraph = (
-  <Graph title="full flow example">
-    <LoginGraph id={loginId} />
-    <DashedArrow from={loginId} to={cartId} />
-    <MainCartGraph id={cartId} />
-  </Graph>
-);
+function FlowGraph() {
+  return (
+    <Graph title="full flow">
+      <LoginGraph id={loginId} />
+      <DashedArrow from={loginId} to={cartId} />
+      <MainCartGraph id={cartId} />
+    </Graph>
+  );
+}
 
 const ariel = new Ariel();
 
 // Save to markdown file
-ariel.renderToFile(FullGraph, "./examples/flow-output.md");
+ariel.renderToFile(<FlowGraph />, "./examples/flow-output.md");

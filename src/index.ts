@@ -54,10 +54,10 @@ export class Ariel {
   }
 
   renderToFile(jsxElement: any, filePath: string): void {
-    const mermaidCode = this.render(jsxElement);
-
-    // Extract title from the graph
+    // First, extract the title from the processed graph
     let title = "Graph";
+
+    // Try to extract title from the original element first
     if (jsxElement.props && jsxElement.props.title) {
       title = jsxElement.props.title;
     } else if (
@@ -68,8 +68,26 @@ export class Ariel {
       title = jsxElement.props.graph.title;
     }
 
+    // If we couldn't get the title from the original element,
+    // we need to process it to get the resolved graph
+    if (title === "Graph") {
+      // Create a temporary processor to extract the graph structure
+      const tempProcessor = new MermaidProcessor();
+      try {
+        // Use a private method to get the graph without rendering
+        const graph = (tempProcessor as any).extractGraph(jsxElement);
+        if (graph && graph.title) {
+          title = graph.title;
+        }
+      } catch (error) {
+        console.warn("Could not extract title from graph:", error);
+      }
+    }
+
+    const mermaidCode = this.render(jsxElement);
+
     // Create the markdown content
-    const markdownContent = `# ${title}:
+    const markdownContent = `# ${title}
 \`\`\`mermaid
 ${mermaidCode}
 \`\`\`
@@ -81,8 +99,6 @@ ${mermaidCode}
       fs.mkdirSync(dir, { recursive: true });
     }
 
-    console.log('write to file');
-    console.log(markdownContent);
     // Write the file
     fs.writeFileSync(filePath, markdownContent, "utf8");
   }

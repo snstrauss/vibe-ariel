@@ -9,10 +9,12 @@
   },
   "scripts": {
     "build": "tsc",
+    "build:examples": "tsc -p examples/tsconfig.json",
     "dev": "tsc --watch",
     "test": "jest",
     "demo": "node dist/demo.js",
-    "cli": "node dist/cli.js"
+    "cli": "node dist/cli.js",
+    "example": "npm run build && npm run build:examples && node dist-examples/flow-example.js"
   },
   "keywords": ["jsx", "mermaid", "graph", "react", "render-jsx"],
   "author": "",

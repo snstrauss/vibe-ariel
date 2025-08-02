@@ -1,11 +1,11 @@
-# this sample:
+# full flow example:
 ```mermaid
 flowchart TB
-%% title full flow
+%% title full flow example
 login -.-> cart
 subgraph login
   welcome["welcome screen"]
-  login-process{"login process"}
+  login-process{"login with id"}
   error["login error"]
   success["login success"]
   welcome --> login-process
@@ -13,7 +13,7 @@ subgraph login
   login-process -. fail .-> error
 end
 subgraph cart
-  top1["top 1"]
+  top1(("top 1"))
   added[/"item added"\]
   top1 --> added
 end

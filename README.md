@@ -1,8 +1,20 @@
-# Ariel
+# Vibe Ariel
 
 A powerful tool that allows you to define Mermaid graphs using JSX syntax and compose them like React components. Built with TypeScript and Preact for maximum flexibility and component reusability.
 
 ![Ariel - Mermaid Tech Adventure](mermaid_tech_adventure.png)
+
+## 🎵 Built with Vibe Coding
+
+This entire project was created using **vibe coding** - a collaborative development approach where we work together in real-time, iterating quickly, and building features as we go. Every component, every fix, and every feature in Ariel was developed through this dynamic, interactive process.
+
+Vibe coding allows us to:
+- **Iterate rapidly** - Try ideas, see results, adjust immediately
+- **Learn together** - Discover patterns and solutions as we build
+- **Build incrementally** - Start simple, add complexity as needed
+- **Stay focused** - Work on what matters most in the moment
+
+Ariel is a perfect example of what's possible when we code with the vibe! 🚀
 
 ## Features
 

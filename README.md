@@ -43,7 +43,111 @@ const flowchart = (
 const ariel = new Ariel();
 const mermaidCode = ariel.render(flowchart);
 console.log(mermaidCode);
+
+// Or save directly to a markdown file
+ariel.renderToFile(flowchart, './my-diagram.md');
+
+## Advanced Example: Modular Component Architecture
+
+Here's a more complex example showing how to create modular, reusable components:
+
+```tsx
+// components.tsx - Reusable base components
+import { Circle, DashedArrow, Diamond, Hexagon, ThickArrow, Trapezoid } from 'ariel';
+
+type BaseProps = { id: string; label: string };
+
+export function State({ id, label }: BaseProps) {
+  return <Hexagon id={id} label={label} />;
+}
+
+export function Try({ id, label, successId, failureId }: BaseProps & {
+  successId: string;
+  failureId: string;
+}) {
+  return (
+    <>
+      <Diamond id={id} label={label} />
+      <ThickArrow label="success" from={id} to={successId} />
+      <DashedArrow label="fail" from={id} to={failureId} />
+    </>
+  );
+}
+
+export function Event({ id, label }: BaseProps) {
+  return <Circle id={id} label={label} />;
+}
+
+export function Outcome({ id, label }: BaseProps) {
+  return <Trapezoid id={id} label={label} />;
+}
 ```
+
+```tsx
+// login-graph.tsx - Login flow subgraph
+import { Arrow, Subgraph } from 'ariel';
+import { State, Try } from './components';
+
+export default function LoginGraph({ id }: { id: string }) {
+  return (
+    <Subgraph id={id} type="flowchart" direction="TB" title="Login Flow">
+      <State id="welcome" label="welcome screen" />
+      <Arrow from="welcome" to="login-process" />
+      <Try
+        id="login-process"
+        label="login with id"
+        successId="success"
+        failureId="error"
+      />
+      <State id="error" label="login error" />
+      <State id="success" label="login success" />
+    </Subgraph>
+  );
+}
+```
+
+```tsx
+// main-cart.tsx - Shopping cart subgraph
+import { Arrow, Subgraph } from 'ariel';
+import { Event, Outcome } from './components';
+
+export default function MainCartGraph({ id }: { id: string }) {
+  return (
+    <Subgraph id={id}>
+      <Event id="top1" label="top 1" />
+      <Arrow from="top1" to="added" />
+      <Outcome id="added" label="item added" />
+    </Subgraph>
+  );
+}
+```
+
+```tsx
+// main.tsx - Compose everything together
+import Ariel, { DashedArrow, Graph } from 'ariel';
+import LoginGraph from './login-graph';
+import MainCartGraph from './main-cart';
+
+const loginId = 'login';
+const cartId = 'cart';
+
+const FullGraph = (
+  <Graph title="full flow">
+    <LoginGraph id={loginId} />
+    <DashedArrow from={loginId} to={cartId} />
+    <MainCartGraph id={cartId} />
+  </Graph>
+);
+
+const ariel = new Ariel();
+ariel.renderToFile(FullGraph, './flow-output.md');
+```
+
+This generates a complete Mermaid diagram with:
+- **Modular components** that can be reused across different graphs
+- **Subgraphs** for organizing complex flows
+- **Custom node types** (hexagons for states, circles for events, etc.)
+- **Proper edge styling** with labels and different arrow types
 
 ## Components
 
@@ -137,6 +241,10 @@ const systemGraph = (
 ### Ariel.render(jsxElement: any): string
 
 Converts a JSX element to Mermaid syntax.
+
+### Ariel.renderToFile(jsxElement: any, filePath: string): void
+
+Renders a JSX element to Mermaid syntax and saves it to a markdown file with a mermaid code block.
 
 ### createSimpleGraph(nodes, edges, options): string
 
